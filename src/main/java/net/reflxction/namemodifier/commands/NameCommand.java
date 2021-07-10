@@ -15,13 +15,12 @@
  */
 package net.reflxction.namemodifier.commands;
 
+
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.BlockPos;
-import net.reflxction.namemodifier.NameModifier;
-import net.reflxction.namemodifier.commons.Multithreading;
 import net.reflxction.namemodifier.commons.NameGUI;
 import net.reflxction.namemodifier.commons.Settings;
 import net.reflxction.namemodifier.utils.SimpleSender;
@@ -76,19 +75,6 @@ public class NameCommand implements ICommand {
                     case "toggle":
                         Settings.ENABLED.set(!Settings.ENABLED.get());
                         SimpleSender.send(Settings.ENABLED.get() ? "&aNameModifier has been enabled" : "&cNameModifier has been disabled");
-                        break;
-                    case "update":
-                        if (NameModifier.INSTANCE.getChecker().isUpdateAvailable()) {
-                            Multithreading.runAsync(() -> {
-                                if (NameModifier.INSTANCE.getUpdateManager().updateMod()) {
-                                    SimpleSender.send("&aSuccessfully updated the mod! Restart your game to see changes.");
-                                } else {
-                                    SimpleSender.send("&cFailed to update mod! To avoid any issues, delete the mod JAR and install it manually again.");
-                                }
-                            });
-                        } else {
-                            SimpleSender.send("&cNo updates found. You're up to date!");
-                        }
                         break;
                     case "check":
                         Settings.SEND_UPDATES.set(!Settings.SEND_UPDATES.get());
