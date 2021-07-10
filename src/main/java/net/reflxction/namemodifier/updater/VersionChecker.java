@@ -26,10 +26,10 @@ public class VersionChecker {
     private boolean updateAvailable = false;
 
     // The current mod version, not necessarily the latest
-    private double version = Double.parseDouble(Reference.VERSION);
+    private final double version = Double.parseDouble(Reference.VERSION);
 
     // The JSON file to get the latest version
-    private String checkerURL;
+    private final String checkerURL;
 
     /**
      * Initiates a new version checker
@@ -46,9 +46,9 @@ public class VersionChecker {
      */
     double getLatestVersion() {
         try {
-            JsonURLReader reader = new JsonURLReader(checkerURL);
+            final JsonURLReader reader = new JsonURLReader(checkerURL);
             return reader.getContentAsObject().get("version").getAsDouble();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
         return 1.0;

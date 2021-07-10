@@ -36,7 +36,7 @@ public class ClientProxy implements IProxy {
      * @param event Forge's pre-init event
      */
     @Override
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(final FMLPreInitializationEvent event) {
         if (Settings.SEND_UPDATES.get()) {
             Multithreading.runAsync(() -> NameModifier.INSTANCE.getChecker().updateState());
         }
@@ -51,7 +51,7 @@ public class ClientProxy implements IProxy {
      * @param event Forge's init event
      */
     @Override
-    public void init(FMLInitializationEvent event) {
+    public void init(final FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new NotificationSender());
         MinecraftForge.EVENT_BUS.register(new ModifyingListener());
         MinecraftForge.EVENT_BUS.register(new ColoredNameListener());
@@ -65,7 +65,7 @@ public class ClientProxy implements IProxy {
      * @param event Forge's post init event
      */
     @Override
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(final FMLPostInitializationEvent event) {
     }
 
     /**
@@ -76,7 +76,7 @@ public class ClientProxy implements IProxy {
      * @param event Forge's server starting event
      */
     @Override
-    public void serverStarting(FMLServerStartingEvent event) {
+    public void serverStarting(final FMLServerStartingEvent event) {
         event.registerServerCommand(new NameCommand());
     }
 

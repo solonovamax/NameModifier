@@ -13,27 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.commons;
+
 
 import net.minecraft.client.Minecraft;
 import net.reflxction.simplejson.configuration.select.SelectKey;
 import net.reflxction.simplejson.configuration.select.SelectionHolder;
 
+
 /**
  * A class with all settings as constants
  */
 public class Settings {
-
     // Whether the mod is enabled or not
     @SelectKey("Enabled")
     public static final SelectionHolder<Boolean> ENABLED = new SelectionHolder<>(true);
-
+    
     // Whether the mod should send updates or check for them
     @SelectKey("SendUpdates")
     public static final SelectionHolder<Boolean> SEND_UPDATES = new SelectionHolder<>(true);
-
+    
     // The fake name of the player
     @SelectKey("Name")
     public static final SelectionHolder<String> NAME = new SelectionHolder<>(Minecraft.getMinecraft().getSession().getUsername());
-
+    
 }

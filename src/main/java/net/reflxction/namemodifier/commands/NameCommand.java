@@ -50,7 +50,7 @@ public class NameCommand implements ICommand {
      * @param sender The command sender that executed the command
      */
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getCommandUsage(final ICommandSender sender) {
         return "/namemodifier <toggle / check / update / name>";
     }
 
@@ -66,7 +66,7 @@ public class NameCommand implements ICommand {
      * @param args   The arguments that were passed
      */
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(final ICommandSender sender, final String[] args) {
         switch (args.length) {
             case 0:
                 SimpleSender.send("&cIncorrect command usage. Try " + getCommandUsage(sender));
@@ -125,12 +125,12 @@ public class NameCommand implements ICommand {
      * @param sender The command sender that executed the command
      */
     @Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+    public boolean canCommandSenderUseCommand(final ICommandSender sender) {
         return true;
     }
 
     @Override
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+    public List<String> addTabCompletionOptions(final ICommandSender sender, final String[] args, final BlockPos pos) {
         return Arrays.asList("name", "toggle", "check", "update");
     }
 
@@ -141,12 +141,12 @@ public class NameCommand implements ICommand {
      * @param index Argument index to check
      */
     @Override
-    public boolean isUsernameIndex(String[] args, int index) {
+    public boolean isUsernameIndex(final String[] args, final int index) {
         return false;
     }
 
     @Override
-    public int compareTo(ICommand o) {
+    public int compareTo(final ICommand o) {
         return 0;
     }
 

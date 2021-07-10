@@ -59,7 +59,7 @@ configurations {
 }
 
 dependencies {
-    compile "com.github.ReflxctionDev:SimpleJSON:1.1"
+    compile "com.github.ReflxctionDev:SimpleJSON:856e89c"
 }
 
 jar {

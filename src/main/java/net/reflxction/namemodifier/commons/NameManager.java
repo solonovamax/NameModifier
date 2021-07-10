@@ -38,7 +38,7 @@ public class NameManager {
      * @param original Original name
      * @param colored  New colored name
      */
-    void set(String original, String colored) {
+    void set(final String original, final String colored) {
         MAP.get().remove(original);
         MAP.get().put(colored, original);
     }
@@ -49,7 +49,7 @@ public class NameManager {
      * @param original Original name
      * @return The colored name
      */
-    public String get(String original) {
+    public String get(final String original) {
         return hasColoredForm(original) ? ChatColor.format(MAP.get().get(original)) : original;
     }
 
@@ -59,7 +59,7 @@ public class NameManager {
      * @param original Original name to check
      * @return {@code true} if it has a colored form, {@code false} if otherwise.
      */
-    private boolean hasColoredForm(String original) {
+    private boolean hasColoredForm(final String original) {
         return MAP.get().get(original) != null;
     }
 

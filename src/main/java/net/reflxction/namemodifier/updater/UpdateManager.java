@@ -30,14 +30,14 @@ import java.net.URL;
 public class UpdateManager {
 
     // Whether the new version is a snapshot or not
-    private boolean snapshot;
+    private final boolean snapshot;
 
     /**
      * Initiates a new update manager
      *
      * @param snapshot Whether the new version is a snapshot or not
      */
-    public UpdateManager(boolean snapshot) {
+    public UpdateManager(final boolean snapshot) {
         this.snapshot = snapshot;
     }
 
@@ -49,22 +49,22 @@ public class UpdateManager {
     public boolean updateMod() {
         boolean success = true;
         try {
-            File modsDirectory = new File(Minecraft.getMinecraft().mcDataDir, "mods");
-            File modFile = new File(modsDirectory, Reference.JAR_NAME);
+            final File modsDirectory = new File(Minecraft.getMinecraft().mcDataDir, "mods");
+            final File modFile = new File(modsDirectory, Reference.JAR_NAME);
             if (modFile.exists() && modFile.delete()) {
                 if (modFile.createNewFile()) {
-                    URL updateURL = new URL(getDownloadLink());
+                    final URL updateURL = new URL(getDownloadLink());
                     FileUtils.copyURLToFile(updateURL, modFile);
                 }
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             success = false;
         }
         return success;
     }
 
     private String getDownloadLink() {
-        String version = NameModifier.INSTANCE.getChecker().getLatestVersion() + (snapshot ? "-SNAPSHOT" : "");
+        final String version = NameModifier.INSTANCE.getChecker().getLatestVersion() + (snapshot ? "-SNAPSHOT" : "");
         return "https://github.com/ReflxctionDev/" +
                 Reference.REPOSITORY_NAME +
                 "/" +

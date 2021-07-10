@@ -34,7 +34,7 @@ public class NameGUI extends GuiScreen {
     private static final int GREEN = Color.GREEN.getRGB();
 
     @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
         try {
             drawDefaultBackground();
             originalNameField.drawTextBox();
@@ -42,12 +42,12 @@ public class NameGUI extends GuiScreen {
             drawString(Minecraft.getMinecraft().fontRendererObj, "Colored Form", width / 2 - 25, height / 2 - 36, GREEN);
             drawString(Minecraft.getMinecraft().fontRendererObj, "Original Player Name", width / 2 - 25, height / 2 - 80, AQUA);
             super.drawScreen(mouseX, mouseY, partialTicks);
-        } catch (Throwable ignored) {
+        } catch (final Throwable ignored) {
         }
     }
 
     @Override
-    public void actionPerformed(GuiButton button) {
+    public void actionPerformed(final GuiButton button) {
         if (button.id == 2) {
             if (originalNameField.getText().isEmpty()) {
                 SimpleSender.send("&cThe command field is required!");
@@ -56,8 +56,8 @@ public class NameGUI extends GuiScreen {
                 SimpleSender.send("&cThe alias field is required!");
             }
             if (!coloredNameField.getText().isEmpty() && !originalNameField.getText().isEmpty()) {
-                String name = originalNameField.getText();
-                String colored = coloredNameField.getText();
+                final String name = originalNameField.getText();
+                final String colored = coloredNameField.getText();
 
                 NameManager.MANAGER.set(name, colored);
                 SimpleSender.send("&Name &b" + name + " will be colored as &b" + colored);
@@ -87,7 +87,7 @@ public class NameGUI extends GuiScreen {
     }
 
     @Override
-    protected void keyTyped(char par1, int par2) throws IOException {
+    protected void keyTyped(final char par1, final int par2) throws IOException {
         super.keyTyped(par1, par2);
         originalNameField.textboxKeyTyped(par1, par2);
         coloredNameField.textboxKeyTyped(par1, par2);
@@ -99,12 +99,12 @@ public class NameGUI extends GuiScreen {
         try {
             this.originalNameField.updateCursorCounter();
             this.coloredNameField.updateCursorCounter();
-        } catch (Throwable ignored) {
+        } catch (final Throwable ignored) {
         }
     }
 
     @Override
-    protected void mouseClicked(int x, int y, int btn) throws IOException {
+    protected void mouseClicked(final int x, final int y, final int btn) throws IOException {
         super.mouseClicked(x, y, btn);
         this.originalNameField.mouseClicked(x, y, btn);
         this.coloredNameField.mouseClicked(x, y, btn);

@@ -25,20 +25,20 @@ import net.reflxction.namemodifier.commands.NameCommand;
 public class ServerProxy implements IProxy {
 
     @Override
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(final FMLPreInitializationEvent event) {
         ClientCommandHandler.instance.registerCommand(new NameCommand());
     }
 
     @Override
-    public void init(FMLInitializationEvent event) {
+    public void init(final FMLInitializationEvent event) {
     }
 
     @Override
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(final FMLPostInitializationEvent event) {
     }
 
     @Override
-    public void serverStarting(FMLServerStartingEvent event) {
+    public void serverStarting(final FMLServerStartingEvent event) {
         event.registerServerCommand(new NameCommand());
     }
 }

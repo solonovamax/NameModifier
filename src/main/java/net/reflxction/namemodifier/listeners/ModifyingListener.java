@@ -27,9 +27,9 @@ import net.reflxction.namemodifier.commons.Settings;
 public class ModifyingListener {
 
     @SubscribeEvent
-    public void onClientChatReceived(ClientChatReceivedEvent event) {
+    public void onClientChatReceived(final ClientChatReceivedEvent event) {
         if (!Settings.ENABLED.get()) return;
-        String name = Minecraft.getMinecraft().getSession().getUsername();
+        final String name = Minecraft.getMinecraft().getSession().getUsername();
         String message = event.message.getFormattedText();
         if (message.contains(name)) {
             message = message.replace(name, Settings.NAME.get());

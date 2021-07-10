@@ -16,7 +16,7 @@
 package net.reflxction.namemodifier.listeners;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.reflxction.namemodifier.NameModifier;
 import net.reflxction.namemodifier.commons.Settings;
 import net.reflxction.namemodifier.utils.Reference;
@@ -34,7 +34,7 @@ public class NotificationSender {
     private boolean sent;
 
     @SubscribeEvent
-    public void onFMLNetworkClientConnectedToServer(ClientConnectedToServerEvent event) {
+    public void onFMLNetworkClientConnectedToServer(final FMLNetworkEvent.ClientConnectedToServerEvent event) {
         if (!sent && Settings.SEND_UPDATES.get()) {
             new Timer().schedule(new TimerTask() {
                 @Override

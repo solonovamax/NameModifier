@@ -33,9 +33,9 @@ public class SimpleSender {
      *
      * @param text Text to send, chat-formatted
      */
-    public static void send(String text) {
+    public static void send(final String text) {
         if (Minecraft.getMinecraft().thePlayer == null) return; // <- For safety
-        StringBuilder messageBuilder = new StringBuilder();
+        final StringBuilder messageBuilder = new StringBuilder();
         for (String word : text.split(" ")) {
             word = ChatColor.format(ChatColor.getLastColors(text) + word);
             messageBuilder.append(word).append(" ");

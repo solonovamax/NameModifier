@@ -15,7 +15,7 @@
  */
 package net.reflxction.namemodifier.listeners;
 
-import net.minecraftforge.event.entity.player.PlayerEvent.NameFormat;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.reflxction.namemodifier.commons.NameManager;
 
@@ -25,7 +25,7 @@ import net.reflxction.namemodifier.commons.NameManager;
 public class ColoredNameListener {
 
     @SubscribeEvent
-    public void onPlayerNameFormat(NameFormat event) {
+    public void onPlayerNameFormat(final PlayerEvent.NameFormat event) {
         event.displayname = NameManager.MANAGER.get(event.username);
     }
 }

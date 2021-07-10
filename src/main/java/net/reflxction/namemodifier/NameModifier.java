@@ -17,7 +17,6 @@ package net.reflxction.namemodifier;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -69,10 +68,10 @@ public class NameModifier {
     private static IProxy proxy;
 
     // The update manager
-    private UpdateManager updateManager = new UpdateManager(true);
+    private final UpdateManager updateManager = new UpdateManager(true);
 
     // The version checker
-    private VersionChecker checker = new VersionChecker();
+    private final VersionChecker checker = new VersionChecker();
 
     /**
      * Called before the mod is fully initialized
@@ -81,8 +80,8 @@ public class NameModifier {
      *
      * @param event Forge's pre-init event
      */
-    @EventHandler
-    public void onFMLPreInitialization(FMLPreInitializationEvent event) {
+    @Mod.EventHandler
+    public void onFMLPreInitialization(final FMLPreInitializationEvent event) {
         proxy.preInit(event);
     }
 
@@ -93,8 +92,8 @@ public class NameModifier {
      *
      * @param event Forge's init event
      */
-    @EventHandler
-    public void onFMLInitialization(FMLInitializationEvent event) {
+    @Mod.EventHandler
+    public void onFMLInitialization(final FMLInitializationEvent event) {
         proxy.init(event);
     }
 
@@ -105,13 +104,13 @@ public class NameModifier {
      *
      * @param event Forge's post init event
      */
-    @EventHandler
-    public void onFMLPostInitialization(FMLPostInitializationEvent event) {
+    @Mod.EventHandler
+    public void onFMLPostInitialization(final FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
 
-    @EventHandler
-    public void onFMLServerStarting(FMLServerStartingEvent event) {
+    @Mod.EventHandler
+    public void onFMLServerStarting(final FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
 
