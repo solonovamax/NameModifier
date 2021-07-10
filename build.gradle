@@ -36,12 +36,6 @@ minecraft {
     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
-repositories {
-    mavenCentral()
-    jcenter()
-    maven { url "https://jitpack.io" }
-}
-
 shadowJar {
     classifier '' // Replace the default JAR
 }
