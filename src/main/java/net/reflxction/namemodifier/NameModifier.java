@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier;
+
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +35,7 @@ import net.reflxction.simplejson.json.JsonFile;
 
 import java.io.File;
 
+
 /**
  * NameModifier: A flexible mod for applying fake names
  */
@@ -43,36 +46,35 @@ import java.io.File;
         acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS
 )
 public class NameModifier {
-
+    
     public static final NameModifier INSTANCE = new NameModifier();
-
+    
     // Config for saving data
     private static final SelectableConfiguration CONFIGURATION = SelectableConfiguration.of(
             JsonFile.of(Minecraft.getMinecraft().mcDataDir + File.separator + "config" + File.separator + "name-modifier.cfg"));
-
+    
+    // Assign proxies of the mod
+    @SidedProxy(
+        
+            // Client side proxy
+            clientSide = Reference.CLIENT_PROXY,
+        
+            // Server side proxy
+            serverSide = Reference.SERVER_PROXY
+    )
+    private static IProxy proxy;
+    
+    // The update manager
+    private final UpdateManager updateManager = new UpdateManager(true);
+    
+    // The version checker
+    private final VersionChecker checker = new VersionChecker();
     static {
         CONFIGURATION.register(Settings.class, NameManager.class);
         CONFIGURATION.associate();
         Runtime.getRuntime().addShutdownHook(new Thread(CONFIGURATION::save));
     }
-
-    // Assign proxies of the mod
-    @SidedProxy(
-
-            // Client side proxy
-            clientSide = Reference.CLIENT_PROXY,
-
-            // Server side proxy
-            serverSide = Reference.SERVER_PROXY
-    )
-    private static IProxy proxy;
-
-    // The update manager
-    private final UpdateManager updateManager = new UpdateManager(true);
-
-    // The version checker
-    private final VersionChecker checker = new VersionChecker();
-
+    
     /**
      * Called before the mod is fully initialized
      * <p>
@@ -84,7 +86,7 @@ public class NameModifier {
     public void onFMLPreInitialization(final FMLPreInitializationEvent event) {
         proxy.preInit(event);
     }
-
+    
     /**
      * Called when the mod has been fully initialized
      * <p>
@@ -96,7 +98,7 @@ public class NameModifier {
     public void onFMLInitialization(final FMLInitializationEvent event) {
         proxy.init(event);
     }
-
+    
     /**
      * Called after the mod has been successfully initialized
      * <p>
@@ -108,12 +110,16 @@ public class NameModifier {
     public void onFMLPostInitialization(final FMLPostInitializationEvent event) {
         proxy.postInit(event);
     }
-
+    
     @Mod.EventHandler
     public void onFMLServerStarting(final FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
-
+    
+    public VersionChecker getChecker() {
+        return checker;
+    }
+    
     /**
      * The mod update manager
      *
@@ -122,9 +128,5 @@ public class NameModifier {
     public UpdateManager getUpdateManager() {
         return updateManager;
     }
-
-    public VersionChecker getChecker() {
-        return checker;
-    }
-
+    
 }

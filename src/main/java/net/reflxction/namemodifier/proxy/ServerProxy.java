@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.proxy;
+
 
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,21 +24,22 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.reflxction.namemodifier.commands.NameCommand;
 
-public class ServerProxy implements IProxy {
 
+public class ServerProxy implements IProxy {
+    
     @Override
     public void preInit(final FMLPreInitializationEvent event) {
         ClientCommandHandler.instance.registerCommand(new NameCommand());
     }
-
+    
     @Override
     public void init(final FMLInitializationEvent event) {
     }
-
+    
     @Override
     public void postInit(final FMLPostInitializationEvent event) {
     }
-
+    
     @Override
     public void serverStarting(final FMLServerStartingEvent event) {
         event.registerServerCommand(new NameCommand());

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.commons;
+
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -22,17 +24,20 @@ import net.minecraft.client.gui.GuiTextField;
 import net.reflxction.namemodifier.utils.SimpleSender;
 import org.lwjgl.input.Mouse;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 
+
 public class NameGUI extends GuiScreen {
-
-    private GuiTextField originalNameField;
-    private GuiTextField coloredNameField;
-
+    
     private static final int AQUA = Color.CYAN.getRGB();
+    
     private static final int GREEN = Color.GREEN.getRGB();
-
+    
+    private GuiTextField originalNameField;
+    
+    private GuiTextField coloredNameField;
+    
     @Override
     public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
         try {
@@ -45,7 +50,21 @@ public class NameGUI extends GuiScreen {
         } catch (final Throwable ignored) {
         }
     }
-
+    
+    @Override
+    protected void keyTyped(final char par1, final int par2) throws IOException {
+        super.keyTyped(par1, par2);
+        originalNameField.textboxKeyTyped(par1, par2);
+        coloredNameField.textboxKeyTyped(par1, par2);
+    }
+    
+    @Override
+    protected void mouseClicked(final int x, final int y, final int btn) throws IOException {
+        super.mouseClicked(x, y, btn);
+        this.originalNameField.mouseClicked(x, y, btn);
+        this.coloredNameField.mouseClicked(x, y, btn);
+    }
+    
     @Override
     public void actionPerformed(final GuiButton button) {
         if (button.id == 2) {
@@ -58,7 +77,7 @@ public class NameGUI extends GuiScreen {
             if (!coloredNameField.getText().isEmpty() && !originalNameField.getText().isEmpty()) {
                 final String name = originalNameField.getText();
                 final String colored = coloredNameField.getText();
-
+                
                 NameManager.MANAGER.set(name, colored);
                 SimpleSender.send("&Name &b" + name + " will be colored as &b" + colored);
                 coloredNameField.setText("");
@@ -66,33 +85,21 @@ public class NameGUI extends GuiScreen {
             }
         }
     }
-
-    @Override
-    public boolean doesGuiPauseGame() {
-        return false;
-    }
-
+    
     @Override
     public void initGui() {
         Mouse.setGrabbed(false);
-
+        
         // Text fields
         coloredNameField = new GuiTextField(6, fontRendererObj, width / 2 - 70, height / 2 - 70, 140, 20);
         originalNameField = new GuiTextField(7, fontRendererObj, width / 2 - 70, height / 2 - 26, 140, 20);
-
+        
         // Buttons
         buttonList.add(new GuiButton(2, width / 2 - 70, height / 2, 140, 20, ChatColor.format("&aColor!")));
         Mouse.setGrabbed(false);
-
+        
     }
-
-    @Override
-    protected void keyTyped(final char par1, final int par2) throws IOException {
-        super.keyTyped(par1, par2);
-        originalNameField.textboxKeyTyped(par1, par2);
-        coloredNameField.textboxKeyTyped(par1, par2);
-    }
-
+    
     @Override
     public void updateScreen() {
         super.updateScreen();
@@ -102,11 +109,9 @@ public class NameGUI extends GuiScreen {
         } catch (final Throwable ignored) {
         }
     }
-
+    
     @Override
-    protected void mouseClicked(final int x, final int y, final int btn) throws IOException {
-        super.mouseClicked(x, y, btn);
-        this.originalNameField.mouseClicked(x, y, btn);
-        this.coloredNameField.mouseClicked(x, y, btn);
+    public boolean doesGuiPauseGame() {
+        return false;
     }
 }

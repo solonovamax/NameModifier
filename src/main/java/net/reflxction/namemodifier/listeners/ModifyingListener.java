@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.listeners;
+
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
@@ -21,11 +23,12 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.reflxction.namemodifier.commons.Settings;
 
+
 /**
  * Listener which modifies the name in messages
  */
 public class ModifyingListener {
-
+    
     @SubscribeEvent
     public void onClientChatReceived(final ClientChatReceivedEvent event) {
         if (!Settings.ENABLED.get()) return;

@@ -13,19 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.commons;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 
 /**
  * A utility that uses Java's concurrency for multithreading
  */
 public class Multithreading {
-
+    
     // The executor service, which uses a thread pool of 50 threads
     private static final ExecutorService SERVICE = Executors.newFixedThreadPool(50, Thread::new);
-
+    
     /**
      * Runs a task asynchronously on the thread pool
      *
@@ -34,5 +37,5 @@ public class Multithreading {
     public static void runAsync(final Runnable task) {
         Multithreading.SERVICE.execute(task);
     }
-
+    
 }

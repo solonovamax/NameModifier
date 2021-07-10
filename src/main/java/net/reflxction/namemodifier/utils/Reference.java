@@ -13,35 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.utils;
+
 
 /**
  * Class which contains mod information.
  */
 public class Reference {
-
+    
     // Mod ID (for Forge initialization)
     public static final String MOD_ID = "namemodifier";
-
+    
     // Mod name
     public static final String NAME = "Name Modifier";
-
+    
     // Mod version
     public static final String VERSION = "1.2";
-
+    
     // Minecraft versions that the mod works on
     public static final String ACCEPTED_VERSIONS = "[1.8.9]";
-
+    
     // Client proxy handler
     public static final String CLIENT_PROXY = "net.reflxction.namemodifier.proxy.ClientProxy";
-
+    
     // Server proxy handler
     public static final String SERVER_PROXY = "net.reflxction.namemodifier.proxy.ServerProxy";
-
+    
     // The Git Repository name
     public static final String REPOSITORY_NAME = "NameModifier";
-
+    
     // The JAR name of the mod
     public static final String JAR_NAME = REPOSITORY_NAME + "-" + VERSION + "-SNAPSHOT";
-
+    
 }

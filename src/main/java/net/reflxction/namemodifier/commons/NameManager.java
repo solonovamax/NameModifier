@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.commons;
+
 
 import net.reflxction.simplejson.configuration.select.SelectKey;
 import net.reflxction.simplejson.configuration.select.SelectionHolder;
@@ -21,17 +23,29 @@ import net.reflxction.simplejson.configuration.select.SelectionHolder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
 /**
  * Class which manages the custom names for other people
  */
 public class NameManager {
-
+    
     @SelectKey("NamesMap")
     public static final SelectionHolder<Map<String, String>> MAP =
             new SelectionHolder<>(new LinkedHashMap<>());
-
+    
     public static final NameManager MANAGER = new NameManager();
-
+    
+    /**
+     * Returns the colored name assigned with the original one, or the original name if none is assigned
+     *
+     * @param original Original name
+     *
+     * @return The colored name
+     */
+    public String get(final String original) {
+        return hasColoredForm(original) ? ChatColor.format(MAP.get().get(original)) : original;
+    }
+    
     /**
      * Overrides the original name and sets its colored form to the one specified
      *
@@ -42,25 +56,16 @@ public class NameManager {
         MAP.get().remove(original);
         MAP.get().put(colored, original);
     }
-
-    /**
-     * Returns the colored name assigned with the original one, or the original name if none is assigned
-     *
-     * @param original Original name
-     * @return The colored name
-     */
-    public String get(final String original) {
-        return hasColoredForm(original) ? ChatColor.format(MAP.get().get(original)) : original;
-    }
-
+    
     /**
      * Returns whether the given name has a colored form or not
      *
      * @param original Original name to check
+     *
      * @return {@code true} if it has a colored form, {@code false} if otherwise.
      */
     private boolean hasColoredForm(final String original) {
         return MAP.get().get(original) != null;
     }
-
+    
 }

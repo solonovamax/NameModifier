@@ -13,34 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.updater;
+
 
 import net.reflxction.namemodifier.utils.Reference;
 import net.reflxction.simplejson.json.JsonURLReader;
 
 import java.io.IOException;
 
+
 public class VersionChecker {
-
-    // Whether an update is available or not
-    private boolean updateAvailable = false;
-
+    
     // The current mod version, not necessarily the latest
     private final double version = Double.parseDouble(Reference.VERSION);
-
+    
     // The JSON file to get the latest version
     private final String checkerURL;
-
+    
+    // Whether an update is available or not
+    private boolean updateAvailable = false;
+    
     /**
      * Initiates a new version checker
      */
     public VersionChecker() {
         checkerURL = "https://raw.githubusercontent.com/ReflxctionDev/" + Reference.REPOSITORY_NAME + "/master/version.json";
     }
-
+    
     /**
-     * Gets the latest version from the JSON file.
-     * This method also updates the state of {@link VersionChecker#updateAvailable}
+     * Updates the state of {@link #updateAvailable}
+     */
+    public void updateState() {
+        updateAvailable = getLatestVersion() > version;
+    }
+    
+    /**
+     * Gets the latest version from the JSON file. This method also updates the state of {@link VersionChecker#updateAvailable}
      *
      * @return The latest version of the mod
      */
@@ -53,7 +62,7 @@ public class VersionChecker {
         }
         return 1.0;
     }
-
+    
     /**
      * Whether an update is available or not
      *
@@ -61,12 +70,5 @@ public class VersionChecker {
      */
     public boolean isUpdateAvailable() {
         return updateAvailable;
-    }
-
-    /**
-     * Updates the state of {@link #updateAvailable}
-     */
-    public void updateState() {
-        updateAvailable = getLatestVersion() > version;
     }
 }

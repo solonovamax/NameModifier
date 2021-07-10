@@ -13,11 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.proxy;
+
 
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.reflxction.namemodifier.NameModifier;
 import net.reflxction.namemodifier.commands.NameCommand;
 import net.reflxction.namemodifier.commons.Multithreading;
@@ -26,8 +33,9 @@ import net.reflxction.namemodifier.listeners.ColoredNameListener;
 import net.reflxction.namemodifier.listeners.ModifyingListener;
 import net.reflxction.namemodifier.listeners.NotificationSender;
 
-public class ClientProxy implements IProxy {
 
+public class ClientProxy implements IProxy {
+    
     /**
      * Called before the mod is fully initialized
      * <p>
@@ -42,7 +50,7 @@ public class ClientProxy implements IProxy {
         }
         ClientCommandHandler.instance.registerCommand(new NameCommand());
     }
-
+    
     /**
      * Called when the mod has been fully initialized
      * <p>
@@ -56,7 +64,7 @@ public class ClientProxy implements IProxy {
         MinecraftForge.EVENT_BUS.register(new ModifyingListener());
         MinecraftForge.EVENT_BUS.register(new ColoredNameListener());
     }
-
+    
     /**
      * Called after the mod has been successfully initialized
      * <p>
@@ -67,7 +75,7 @@ public class ClientProxy implements IProxy {
     @Override
     public void postInit(final FMLPostInitializationEvent event) {
     }
-
+    
     /**
      * Called after {@link FMLServerAboutToStartEvent} and before {@link FMLServerStartedEvent}.
      * <p>
@@ -79,5 +87,5 @@ public class ClientProxy implements IProxy {
     public void serverStarting(final FMLServerStartingEvent event) {
         event.registerServerCommand(new NameCommand());
     }
-
+    
 }

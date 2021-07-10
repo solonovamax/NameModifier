@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.listeners;
+
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -25,14 +27,15 @@ import net.reflxction.namemodifier.utils.SimpleSender;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 /**
  * Listener which sends the player a notification update
  */
 public class NotificationSender {
-
+    
     // Whether the notification was already sent or not
     private boolean sent;
-
+    
     @SubscribeEvent
     public void onFMLNetworkClientConnectedToServer(final FMLNetworkEvent.ClientConnectedToServerEvent event) {
         if (!sent && Settings.SEND_UPDATES.get()) {

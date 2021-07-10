@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.commands;
 
 
@@ -30,11 +31,17 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 /**
  * Class which handles command input for "/namemodifier"
  */
 public class NameCommand implements ICommand {
-
+    
+    @Override
+    public int compareTo(final ICommand o) {
+        return 0;
+    }
+    
     /**
      * Gets the name of the command
      */
@@ -42,7 +49,7 @@ public class NameCommand implements ICommand {
     public String getCommandName() {
         return "namemodifier";
     }
-
+    
     /**
      * Gets the usage string for the command.
      *
@@ -52,12 +59,12 @@ public class NameCommand implements ICommand {
     public String getCommandUsage(final ICommandSender sender) {
         return "/namemodifier <toggle / check / update / name>";
     }
-
+    
     @Override
     public List<String> getCommandAliases() {
         return ImmutableList.of("nm");
     }
-
+    
     /**
      * Callback when the command is invoked
      *
@@ -78,7 +85,9 @@ public class NameCommand implements ICommand {
                         break;
                     case "check":
                         Settings.SEND_UPDATES.set(!Settings.SEND_UPDATES.get());
-                        SimpleSender.send(Settings.SEND_UPDATES.get() ? "&aYou will be notified on updates" : "&cYou will no longer be notified on updates");
+                        SimpleSender.send(Settings.SEND_UPDATES.get()
+                                          ? "&aYou will be notified on updates"
+                                          : "&cYou will no longer be notified on updates");
                         break;
                     case "gui":
                         new Timer().schedule(new TimerTask() {
@@ -104,7 +113,7 @@ public class NameCommand implements ICommand {
                 break;
         }
     }
-
+    
     /**
      * Returns true if the given command sender is allowed to use this command.
      *
@@ -114,12 +123,12 @@ public class NameCommand implements ICommand {
     public boolean canCommandSenderUseCommand(final ICommandSender sender) {
         return true;
     }
-
+    
     @Override
     public List<String> addTabCompletionOptions(final ICommandSender sender, final String[] args, final BlockPos pos) {
         return Arrays.asList("name", "toggle", "check", "update");
     }
-
+    
     /**
      * Return whether the specified command parameter index is a username parameter.
      *
@@ -130,10 +139,5 @@ public class NameCommand implements ICommand {
     public boolean isUsernameIndex(final String[] args, final int index) {
         return false;
     }
-
-    @Override
-    public int compareTo(final ICommand o) {
-        return 0;
-    }
-
+    
 }

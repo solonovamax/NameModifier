@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.reflxction.namemodifier.updater;
+
 
 import net.minecraft.client.Minecraft;
 import net.reflxction.namemodifier.NameModifier;
@@ -24,14 +26,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+
 /**
  * Class which handles updating the mod
  */
 public class UpdateManager {
-
+    
     // Whether the new version is a snapshot or not
     private final boolean snapshot;
-
+    
     /**
      * Initiates a new update manager
      *
@@ -40,7 +43,7 @@ public class UpdateManager {
     public UpdateManager(final boolean snapshot) {
         this.snapshot = snapshot;
     }
-
+    
     /**
      * Updates the mod file
      *
@@ -62,22 +65,22 @@ public class UpdateManager {
         }
         return success;
     }
-
+    
     private String getDownloadLink() {
         final String version = NameModifier.INSTANCE.getChecker().getLatestVersion() + (snapshot ? "-SNAPSHOT" : "");
         return "https://github.com/ReflxctionDev/" +
-                Reference.REPOSITORY_NAME +
-                "/" +
-                "releases" +
-                "/" +
-                "download" +
-                "/" +
-                version +
-                "/" +
-                Reference.REPOSITORY_NAME +
-                "-" +
-                version +
-                ".jar";
+               Reference.REPOSITORY_NAME +
+               "/" +
+               "releases" +
+               "/" +
+               "download" +
+               "/" +
+               version +
+               "/" +
+               Reference.REPOSITORY_NAME +
+               "-" +
+               version +
+               ".jar";
     }
-
+    
 }
