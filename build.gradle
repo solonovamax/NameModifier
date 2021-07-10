@@ -8,15 +8,23 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT"
     }
 }
+
 plugins {
-    id 'org.ajoberstar.grgit' version '1.7.0'
-    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id "org.ajoberstar.grgit" version "1.7.0"
+    id "com.github.johnrengelman.shadow" version "1.2.3"
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+repositories {
+    maven {
+        name = "jitpack"
+        url = "https://jitpack.io"
+    }
+}
+
+apply plugin: "net.minecraftforge.gradle.forge"
 
 version = "1.2-SNAPSHOT" // For snapshots as first release, TODO remove -SNAPSHOT suffix if stable.
 group = "net.reflxction" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -27,7 +35,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 // Use UTF-8 for encoding
-compileJava.options.encoding = 'UTF-8'
+compileJava.options.encoding = "UTF-8"
 
 minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
@@ -51,6 +59,7 @@ configurations {
 }
 
 dependencies {
+    compile "com.github.ReflxctionDev:SimpleJSON:1.1"
 }
 
 jar {
@@ -66,14 +75,14 @@ processResources {
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
+        include "mcmod.info"
 
         // replace version and mcversion
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+        expand "version": project.version, "mcversion": project.minecraft.version
     }
 
-    // copy everything else that isn't the mcmod.info file
+    // copy everything else that isn"t the mcmod.info file
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude "mcmod.info"
     }
 }
