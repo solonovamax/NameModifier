@@ -25,10 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.reflxction.namemodifier.NameModifier;
 import net.reflxction.namemodifier.commands.NameCommand;
-import net.reflxction.namemodifier.commons.Multithreading;
-import net.reflxction.namemodifier.commons.Settings;
 import net.reflxction.namemodifier.listeners.ColoredNameListener;
 import net.reflxction.namemodifier.listeners.ModifyingListener;
 import net.reflxction.namemodifier.listeners.NotificationSender;
@@ -45,9 +42,6 @@ public class ClientProxy implements IProxy {
      */
     @Override
     public void preInit(final FMLPreInitializationEvent event) {
-        if (Settings.SEND_UPDATES.get()) {
-            Multithreading.runAsync(() -> NameModifier.INSTANCE.getChecker().updateState());
-        }
         ClientCommandHandler.instance.registerCommand(new NameCommand());
     }
     
