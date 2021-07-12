@@ -1,16 +1,16 @@
 [
-{
-  "modid": "namemodifier",
-  "name": "Name Modifier",
-  "description": "A mod which gives the client player a fake name.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "http://www.github.com/ReflxctionDev/NameModifier",
-  "updateUrl": "",
-  "authorList": ["Reflxction"],
-  "credits": "Reflxction",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+        "modid":        "namemodifier",
+        "name":         "Name Modifier",
+        "description":  "A mod which gives the client player a fake name.",
+        "version":      "${version}",
+        "mcversion":    "${mcversion}",
+        "url":          "http://www.github.com/ReflxctionDev/NameModifier",
+        "updateUrl":    "",
+        "authorList":   [ "Reflxction" ],
+        "credits":      "Reflxction",
+        "logoFile":     "",
+        "screenshots":  [ ],
+        "dependencies": [ ]
+    }
 ]

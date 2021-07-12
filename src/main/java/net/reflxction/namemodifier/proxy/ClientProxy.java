@@ -28,7 +28,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.reflxction.namemodifier.commands.NameCommand;
 import net.reflxction.namemodifier.listeners.ColoredNameListener;
 import net.reflxction.namemodifier.listeners.ModifyingListener;
-import net.reflxction.namemodifier.listeners.NotificationSender;
 
 
 public class ClientProxy implements IProxy {
@@ -54,7 +53,6 @@ public class ClientProxy implements IProxy {
      */
     @Override
     public void init(final FMLInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new NotificationSender());
         MinecraftForge.EVENT_BUS.register(new ModifyingListener());
         MinecraftForge.EVENT_BUS.register(new ColoredNameListener());
     }

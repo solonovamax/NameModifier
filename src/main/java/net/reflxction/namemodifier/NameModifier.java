@@ -27,8 +27,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.reflxction.namemodifier.commons.NameManager;
 import net.reflxction.namemodifier.commons.Settings;
 import net.reflxction.namemodifier.proxy.IProxy;
-import net.reflxction.namemodifier.updater.UpdateManager;
-import net.reflxction.namemodifier.updater.VersionChecker;
 import net.reflxction.namemodifier.utils.Reference;
 import net.reflxction.simplejson.configuration.select.SelectableConfiguration;
 import net.reflxction.simplejson.json.JsonFile;
@@ -47,28 +45,17 @@ import java.io.File;
 )
 public class NameModifier {
     
-    public static final NameModifier INSTANCE = new NameModifier();
+    public static final NameModifier INSTANCE = new NameModifier(); // bruh
     
     // Config for saving data
     private static final SelectableConfiguration CONFIGURATION = SelectableConfiguration.of(
             JsonFile.of(Minecraft.getMinecraft().mcDataDir + File.separator + "config" + File.separator + "name-modifier.cfg"));
     
     // Assign proxies of the mod
-    @SidedProxy(
-        
-            // Client side proxy
-            clientSide = Reference.CLIENT_PROXY,
-        
-            // Server side proxy
-            serverSide = Reference.SERVER_PROXY
-    )
+    @SuppressWarnings("StaticVariableMayNotBeInitialized")
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
     private static IProxy proxy;
     
-    // The update manager
-    private final UpdateManager updateManager = new UpdateManager(true);
-    
-    // The version checker
-    private final VersionChecker checker = new VersionChecker();
     static {
         CONFIGURATION.register(Settings.class, NameManager.class);
         CONFIGURATION.associate();
@@ -115,18 +102,4 @@ public class NameModifier {
     public void onFMLServerStarting(final FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
-    
-    public VersionChecker getChecker() {
-        return checker;
-    }
-    
-    /**
-     * The mod update manager
-     *
-     * @return An instance of the mod update manager
-     */
-    public UpdateManager getUpdateManager() {
-        return updateManager;
-    }
-    
 }
